@@ -46,14 +46,18 @@ internal class Character
     public bool IsAlive() => _health > 0;
     public void Attack(Character target)
     {
-        target.Health -= Force - target.Defense;
-        Console.WriteLine($"{this.Name} attaque {target.Name}");
+        if (target.IsAlive())
+        {
+            target.Health = target.Health - (this.Force - this.Defense);
+            Console.WriteLine($"{this.Name} attaque {target.Name}");
+        }
+        else Console.WriteLine($"{target} tuer.");
     }
 
 
 
     private string? _name;
     private int _health = 100;
-    private int _force = 25;
-    private int _defense = 50;
+    private int _force = 100;
+    private int _defense = 75;
 }
